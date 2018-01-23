@@ -1,7 +1,8 @@
 'use strict';
 // CREATES BOOK OBJECT CONSTRUCTOR
 
-const conString = 'https://ttb-books.herokuapp.com';
+
+ var __API_URL__ = 'http://localhost:3000';
 //heroku URL 
 
 // THIS IS 3RD
@@ -20,7 +21,7 @@ Book.prototype.toHtml = function() {
 // AJAX REQUEST WHICH GO TO SERVER THEN DB, THIS JUST REQUEST ALL BOOKS DATA
 // THIS IS 1ST
 Book.fetchAll = callback => {
-    $.get(`${conString}/v1/books`)
+    $.get(`${__API_URL__ }/v1/books`)
         .then(results => {
             Book.loadAll(results);
         })
@@ -32,7 +33,7 @@ Book.loadAll = rawBookData => {
 }
 // post new book
 Book.insertRecord = book => {
-    $.post(`${conString}/v1/books`, book)
+    $.post(`${__API_URL__ }/v1/books`, book)
         .then(console.log('post successful, data', data))
         .catch(errorCallback);
 }
