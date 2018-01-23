@@ -1,5 +1,9 @@
 'use strict';
 // CREATES BOOK OBJECT CONSTRUCTOR
+
+const conString = 'https://ttb-books.herokuapp.com';
+//heroku URL 
+
 // THIS IS 3RD
 function Book (rawBookDataObj) {
     Object.keys(rawBookDataObj).forEach(key => this[key] = rawBookDataObj[key]);
@@ -16,7 +20,7 @@ Book.prototype.toHtml = function() {
 // AJAX REQUEST WHICH GO TO SERVER THEN DB, THIS JUST REQUEST ALL BOOKS DATA
 // THIS IS 1ST
 Book.fetchAll = callback => {
-    $.get('/books')
+    $.get(`${conString}/v1/books`)
         .then(results => {
             Book.loadAll(results);
         })
@@ -28,7 +32,7 @@ Book.loadAll = rawBookData => {
 }
 // post new book
 Book.insertRecord = book => {
-    $.post('/books', book)
+    $.post(`${conString}/v1/books`, book)
         .then(console.log('post successful, data', data))
         .catch(errorCallback);
 }

@@ -5,8 +5,7 @@
 let bookView = {};
 
 bookView.initIndexPage = function() {
-    
-    
+    console.log('initpage')
     Book.all.map(book => $('#books').append(book.toHtml()));
 }
 
