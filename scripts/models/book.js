@@ -2,7 +2,7 @@
 // CREATES BOOK OBJECT CONSTRUCTOR
 
 
- var __API_URL__ = 'http://localhost:3000';
+ var __API_URL__ = 'https://ttb-books.herokuapp.com';
 //heroku URL 
 
 // THIS IS 3RD
