@@ -10,6 +10,17 @@
         <link rel="stylesheet" href="styles/layout.css">
         <link rel="stylesheet" href="styles/modules.css">
         <link rel="stylesheet" href="styles/state.css">
+
+        <script id="book-template" type="text/x-handlebars-template">
+            <section class="bookListing" data-bookAuthor="{{bookAuthor}}" data-bookCategory="{{bookCategory}}">
+                <img src="{{imageUrl}}">
+                <div class="bookInfo">
+                    <p class="bookTitle">{{bookTitle}}</p>
+                    <p class="bookAuthor"><a ref="{{authorUrl}}">{{bookAuthor}}</a></p>
+                </div>
+            </section>
+        </script>
+
     </head>
     <body>
         <header>
