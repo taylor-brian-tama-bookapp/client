@@ -5,7 +5,8 @@ var app = app || {};
     const book = {};
 
     var __API_URL__ = 'https://ttb-books.herokuapp.com';
-    //heroku URL 
+    
+  //heroku URL 
 
     // THIS IS 3RD
     function Book (rawBookDataObj) {
@@ -36,18 +37,16 @@ var app = app || {};
     // post new book
     Book.insertRecord = book => {
         $.post(`${__API_URL__ }/v1/books`, {title: this.title, author: this.author, isbn: this.isbn, image_url: this.image_url, description: this.description})
-        .then(data => {
-            console.log(data);
-            if (callback) callback();
+        .then(function() {
+            // pageLoad();
+            console.log('1');
           })
-    }
+          .catch(function(err) {
+            console.error(err);
+            // pageLoad();
+            console.log('2');
+          });
+        }
 
-    // Article.prototype.insertRecord = function (callback) {
-    //     console.log('article.prototype.insertrecord');
-    //     // REVIEW: Why can't we use an arrow function here for .insertRecord()?
-    //     $.post('/articles', { author: this.author, authorUrl: this.authorUrl, body: this.body, category: this.category, publishedOn: this.publishedOn, title: this.title })
-    //       .then(console.log)
-    //       .then(callback);
-    //   };
     module.Book = Book;
 })(app);
