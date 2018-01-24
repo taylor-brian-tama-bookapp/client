@@ -19,18 +19,24 @@ var app = app || {};
     };
     // AJAX REQUEST WHICH GO TO SERVER THEN DB, THIS JUST REQUEST ALL BOOKS DATA
     // THIS IS 1ST
-    Book.fetchAll = () => {
+    Book.fetchAll = (ctx, next) => {
         console.log(Book.fetchAll);
         $.get(`${__API_URL__ }/v1/books`)
             .then(results => {
                 Book.loadAll(results);
             });
+        next();
      };
-            
+          
+    Book.renderAll = (ctx, next) => {
+        app.Book.all.map(book => $('#books').append(book.toHtml()));
+        next();
+    }
+
     // THIS IS 2ND
     Book.loadAll = rawBookData => {
         Book.all = rawBookData.map(bookObject => new Book(bookObject))
-        .then(app.Book.all.map(book => $('#books').append(book.toHtml())));
+        
     }
     // post new book
 
