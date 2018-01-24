@@ -29,8 +29,8 @@ var app = app || {};
         $.get(`${__API_URL__ }/v1/books`)
             .then(results => {
                 Book.loadAll(results);
+                next();
             });
-            next();
         };
             
     // THIS IS 2ND
