@@ -10,6 +10,7 @@
 page('/', homeView.init, app.Book.fetchAll, app.Book.renderAll);
 page('/new', newBookView.init);
 page('/book/:book', singleBookView.init);
+
 //page('/client/*', errorView.init);
 
 page();
