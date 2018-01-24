@@ -17,19 +17,22 @@ var app = app || {};
     Book.all = [];
     // TURNS BOOKS INTO HTML VIA HANDLEBARS TEMPLATE ON INDEX PAGE IN HEAD
     // THIS IS 4TH
-    Book.prototype.toHtml = function() {
+    Book.prototype.toHtml = function(ctx, next) {
         var template = Handlebars.compile($('#book-template').text());
         return template(this);
+        next();
     };
     // AJAX REQUEST WHICH GO TO SERVER THEN DB, THIS JUST REQUEST ALL BOOKS DATA
     // THIS IS 1ST
-    Book.fetchAll = callback => {
+    Book.fetchAll = (ctx, next) => {
+        console.log(Book.fetchAll);
         $.get(`${__API_URL__ }/v1/books`)
             .then(results => {
                 Book.loadAll(results);
             })
-            .then(callback);
-    };
+            next();
+        };
+            
     // THIS IS 2ND
     Book.loadAll = rawBookData => {
         Book.all = rawBookData.map(bookObject => new Book(bookObject));
