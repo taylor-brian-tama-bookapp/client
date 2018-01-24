@@ -1,8 +1,12 @@
 'use strict';
 
-page('/client', homeView.init);
-page('/client/new', newBookView.init);
-page('/client/book/:book', bookView.init);
+page('/client', function(){ page.redirect('/');});
+page('/', homeView.init);
+page('/new', newBookView.init);
+page('/book/:book', bookView.init);
 page('*', errorView.init);
 
 page();
+
+
+  
