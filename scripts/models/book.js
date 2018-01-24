@@ -30,7 +30,7 @@ var app = app || {};
             .then(results => {
                 Book.loadAll(results);
             })
-            next();
+            .next();
         };
             
     // THIS IS 2ND
