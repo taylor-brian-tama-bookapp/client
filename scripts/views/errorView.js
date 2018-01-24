@@ -5,8 +5,8 @@
 
     errorView.init = function() {
         console.log('errorView');
-        $('#singleBookView').empty();
-        $('#homeView').empty();
+        $('#singleBookView').hide();
+        $('#homeView').hide();
         $('#errorView').empty();
         $('#newBookView').hide();
         $('#errorView').append(`<section class="errorViewContainer"><img src="/images/404.jpg" alt="404 error"></section>`);
