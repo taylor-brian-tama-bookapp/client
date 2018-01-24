@@ -1,4 +1,5 @@
 'use strict';
+var app = app || {};
 
 (function(module) {
     const book = {};
@@ -35,9 +36,18 @@
     // post new book
     Book.insertRecord = book => {
         $.post(`${__API_URL__ }/v1/books`, book)
-            .then(console.log('post successful, data', data))
-            .catch(errorCallback);
+        .then(data => {
+            console.log(data);
+            if (callback) callback();
+          })
     }
 
-module.Book = Book;
-})(window);
+    // Article.prototype.insertRecord = function (callback) {
+    //     console.log('article.prototype.insertrecord');
+    //     // REVIEW: Why can't we use an arrow function here for .insertRecord()?
+    //     $.post('/articles', { author: this.author, authorUrl: this.authorUrl, body: this.body, category: this.category, publishedOn: this.publishedOn, title: this.title })
+    //       .then(console.log)
+    //       .then(callback);
+    //   };
+    module.Book = Book;
+})(app);

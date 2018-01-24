@@ -5,10 +5,9 @@
 
     homeView.init = function() {
         console.log('homeView');
-        $('#bookView').empty();
+        $('#singleBookView').empty();
         $('#errorView').empty();
-        $('#newBookView').empty();
-        Book.all.map(book => $('#books').append(book.toHtml()));
+        $('#newBookView').hide();
     }
     
     module.homeView = homeView;

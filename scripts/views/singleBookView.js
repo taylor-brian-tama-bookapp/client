@@ -1,14 +1,14 @@
 'use strict';
 
 (function(module) {
-    const bookView = {};
+    const singleBookView = {};
 
-    bookView.init = function() {
+    singleBookView.init = function() {
         console.log('bookView');
         $('#errorView').empty();
         $('#homeView').empty();
-        $('#newBookView').empty();
+        $('#newBookView').hide();
     }
     
-    module.bookView = bookView;
+    module.singleBookView = singleBookView;
 })(window);
