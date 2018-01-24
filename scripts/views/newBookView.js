@@ -24,7 +24,7 @@
           
         });
         console.log(book);
-        app.Book.insertRecord();
+        Book.insertRecord();
 
         // window.location = '../';
       }
