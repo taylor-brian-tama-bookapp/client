@@ -3,7 +3,8 @@ var app = app || {};
 
 (function(module) {
     const book = {};
-    var __API_URL__ = 'https://ttb-books.herokuapp.com';
+    //var __API_URL__ = 'https://ttb-books.herokuapp.com';
+    var __API_URL__ = 'http://localhost:3000';
 
     // THIS IS 3RD
     function Book (rawBookDataObj) {
@@ -20,7 +21,7 @@ var app = app || {};
     // AJAX REQUEST WHICH GO TO SERVER THEN DB, THIS JUST REQUEST ALL BOOKS DATA
     // THIS IS 1ST
     Book.fetchAll = (ctx, next) => {
-        console.log(Book.fetchAll);
+        console.log('Book.fetchAll');
         $.get(`${__API_URL__ }/v1/books`)
             .then(results => {
                 Book.loadAll(results);
@@ -29,6 +30,7 @@ var app = app || {};
      };
           
     Book.renderAll = (ctx, next) => {
+        console.log('render');
         app.Book.all.map(book => $('#books').append(book.toHtml()));
         next();
     }
