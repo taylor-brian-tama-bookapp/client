@@ -26,7 +26,7 @@ var app = app || {};
             .then(results => {
                 Book.loadAll(results);
             });
-        next();
+        //next();
      };
           
     Book.renderAll = (ctx, next) => {
@@ -37,7 +37,8 @@ var app = app || {};
 
     // THIS IS 2ND
     Book.loadAll = rawBookData => {
-        Book.all = rawBookData.map(bookObject => new Book(bookObject))
+        Book.all = rawBookData.map(bookObject => new Book(bookObject));
+        Book.renderAll();
         
     }
     // post new book
