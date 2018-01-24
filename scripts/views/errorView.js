@@ -7,7 +7,7 @@
         console.log('errorView');
         $('#bookView').empty();
         $('#homeView').empty();
-        $('#newBookView').empty();
+        $('#newBookView').hide();
     }
     
     module.errorView = errorView;

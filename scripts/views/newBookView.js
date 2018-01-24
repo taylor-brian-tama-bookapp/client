@@ -8,6 +8,7 @@
         $('#bookView').empty();
         $('#errorView').empty();
         $('#homeView').empty();
+        $('#newBookView').show();
     }
     
     module.newBookView = newBookView;
