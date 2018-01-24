@@ -25,11 +25,11 @@ var app = app || {};
     // AJAX REQUEST WHICH GO TO SERVER THEN DB, THIS JUST REQUEST ALL BOOKS DATA
     // THIS IS 1ST
     Book.fetchAll = (ctx, next) => {
+        console.log(Book.fetchAll);
         $.get(`${__API_URL__ }/v1/books`)
             .then(results => {
                 Book.loadAll(results);
             })
-            console.log(Book.fetchAll)
             next();
         };
             
