@@ -20,10 +20,10 @@
           isbn: $('#isbn').val(),
           image_url: $('#image_url').val(),
           description: $('#description').val(),
-          publishedOn: new Date().toISOString()
+          
         });
         console.log(book);
-        Book.insertRecord();
+        app.Book.insertRecord();
         // window.location = '../';
       }
     
