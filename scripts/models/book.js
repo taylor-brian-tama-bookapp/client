@@ -3,15 +3,11 @@ var app = app || {};
 
 (function(module) {
     const book = {};
-
     var __API_URL__ = 'https://ttb-books.herokuapp.com';
-    
-  //heroku URL 
 
     // THIS IS 3RD
     function Book (rawBookDataObj) {
         Object.keys(rawBookDataObj).forEach(key => this[key] = rawBookDataObj[key]);
-        // bookAuthor, bookCategory, imageUrl, bookTitle, authorUrl
     }
     // PROPERTY OF CONSTRUCTOR, ALL BOOKS
     Book.all = [];
@@ -29,12 +25,12 @@ var app = app || {};
             .then(results => {
                 Book.loadAll(results);
             });
-        app.Book.all.map(book => $('#books').append(book.toHtml()));
-        };
+     };
             
     // THIS IS 2ND
     Book.loadAll = rawBookData => {
-        Book.all = rawBookData.map(bookObject => new Book(bookObject));
+        Book.all = rawBookData.map(bookObject => new Book(bookObject))
+        .then(app.Book.all.map(book => $('#books').append(book.toHtml())));
     }
     // post new book
 
@@ -42,20 +38,6 @@ var app = app || {};
         $.post(`${__API_URL__ }/v1/books`, {title: this.title, author: this.author, isbn: this.isbn, image_url: this.image_url, description: this.description})
         .then(callback); 
     };
-        
-        
-        
-        // {
-        //     // pageLoad();
-        //     console.log('1');
-        //   })
-        //   .catch(function(err) {
-        //     console.error(err);
-        //     // pageLoad();
-        //     console.log('2');
-        //   });
-        // }
-
 
     module.Book = Book;
 })(app);
