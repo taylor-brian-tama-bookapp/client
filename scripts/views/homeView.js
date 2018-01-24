@@ -8,7 +8,7 @@
         $('#singleBookView').empty();
         $('#errorView').empty();
         $('#newBookView').hide();
-        next()
+        app.Book.fetchAll;
     }
 
         
