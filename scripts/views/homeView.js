@@ -9,6 +9,9 @@
         $('#errorView').empty();
         $('#newBookView').hide();
     }
+
+        
+        
     
     module.homeView = homeView;
 })(window);

@@ -7,7 +7,7 @@
         console.log('newView');
         $('#singleBookView').empty();
         $('#errorView').empty();
-        $('#homeView').empty();
+        //$('#homeView').empty();
         $('#newBookView').show();
         $('#newBookForm').on('submit', newBookView.submit);
     }
