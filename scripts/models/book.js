@@ -32,7 +32,7 @@ var app = app || {};
     Book.renderAll = (ctx, next) => {
         console.log('render');
         app.Book.all.map(book => $('#books').append(book.toHtml()));
-        next();
+        //next();
     }
 
     // THIS IS 2ND
