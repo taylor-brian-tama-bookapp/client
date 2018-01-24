@@ -5,9 +5,9 @@
 
     newBookView.init = function() {
         console.log('newView');
-        $('#singleBookView').empty();
+        $('#singleBookView').hide();
         $('#errorView').empty();
-        //$('#homeView').empty();
+        $('#homeView').hide();
         $('#newBookView').show();
         $('#newBookForm').on('submit', newBookView.submit);
     }

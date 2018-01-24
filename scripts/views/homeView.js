@@ -5,9 +5,10 @@
 
     homeView.init = function(ctx, next) {
         console.log('homeView');
-        $('#singleBookView').empty();
+        $('#singleBookView').hide();
         $('#errorView').empty();
         $('#newBookView').hide();
+        $('#homeView').show();
         next();
     }
 
