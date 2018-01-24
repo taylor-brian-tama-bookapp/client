@@ -38,7 +38,7 @@
                 </section>
             </section>
 
-            <section id="bookView">
+            <section id="singleBookView">
                 <section id="individualBook" class="tab-content">
                     <p>BOOK VIEW</p>
                 </section>
@@ -53,8 +53,7 @@
             <section id="newBookView">
                 <section id="newBook" class="tab-content">
                     <h1>New Book</h1>
-                    <form action="#" id="new-form">
-                            title, author, isbn, image_url, description
+                    <form action="#" id="newBookForm">
                         <fieldset>
                             <label for="title">Title: </label>
                             <input type="text" id="title" name="title" placeholder="Book title" required>
@@ -92,13 +91,10 @@
         <script src="scripts/vendor/page.js"></script>
         <script src="scripts/models/book.js"></script>
         <script src="scripts/views/homeView.js"></script>
-        <script src="scripts/views/bookView.js"></script>
-        <script src="scripts/views/errorView.js"></script>
         <script src="scripts/views/newBookView.js"></script>
+        <script src="scripts/views/singleBookView.js"></script>
+        <script src="scripts/views/errorView.js"></script>
         <script src="scripts/controllers/routes.js"></script>
-        <script>
-            Book.fetchAll();
-        </script>
     </body>
 </html>
         
