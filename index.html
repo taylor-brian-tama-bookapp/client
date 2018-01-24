@@ -13,10 +13,10 @@
 
         <script id="book-template" type="text/x-handlebars-template">
             <section class="bookListing" data-author="{{author}}">
-                <img src="{{image_url}}">
+                <img src="{{imageUrl}}">
                 <div class="bookInfo">
-                    <p class="bookTitle">{{title}}</p>
-                    <p class="bookAuthor"><a ref="{{author_url}}">{{author}}</a></p>
+                    <p class="bookTitle">{{bookTitle}}</p>
+                    <p class="bookAuthor"><a ref="{{authorUrl}}">{{bookAuthor}}</a></p>
                 </div>
             </section>
         </script>
@@ -34,10 +34,13 @@
         </main>
 
         <script src="scripts/vendor/jquery.js"></script>
+        <script src="scripts/vendor/page.js"></script>
         <script src="scripts/vendor/handlebars.js"></script>
-        <script src="scripts/models/book.js"></script>
-        <script src="scripts/views/book-view.js"></script>
-        <script src="scripts/views/error-view.js"></script>
+        <script src="scripts/controllers/routes.js"></script>
+        <script src="scripts/views/bookView.js"></script>
+        <script src="scripts/views/bookView.js"></script>
+        <script src="scripts/views/bookView.js"></script>
+        <script src="scripts/views/bookView.js"></script>
         <script>
             Book.fetchAll(bookView.initIndexPage);
         </script>
