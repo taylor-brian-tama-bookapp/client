@@ -4,6 +4,7 @@
     const newBookView = {};
 
     newBookView.init = function() {
+        console.log('newView');
         $('#bookView').empty();
         $('#errorView').empty();
         $('#homeView').empty();

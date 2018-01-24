@@ -4,6 +4,7 @@
     const errorView = {};
 
     errorView.init = function() {
+        console.log('errorView');
         $('#bookView').empty();
         $('#homeView').empty();
         $('#newBookView').empty();
