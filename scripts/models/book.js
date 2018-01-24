@@ -35,7 +35,7 @@ var app = app || {};
     }
     // post new book
     Book.insertRecord = book => {
-        $.post(`${__API_URL__ }/v1/books`, book)
+        $.post(`${__API_URL__ }/v1/books`, {title: this.title, author: this.author, isbn: this.isbn, image_url: this.image_url, description: this.description})
         .then(data => {
             console.log(data);
             if (callback) callback();
