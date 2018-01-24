@@ -20,10 +20,12 @@
           isbn: $('#isbn').val(),
           image_url: $('#image_url').val(),
           description: $('#description').val(),
+
           
         });
         console.log(book);
         app.Book.insertRecord();
+
         // window.location = '../';
       }
     
