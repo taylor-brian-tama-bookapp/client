@@ -23,7 +23,7 @@
           publishedOn: new Date().toISOString()
         });
         console.log(book);
-        app.Book.insertRecord();
+        Book.insertRecord();
         // window.location = '../';
       }
     
