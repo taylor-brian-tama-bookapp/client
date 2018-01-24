@@ -35,8 +35,8 @@ var app = app || {};
         Book.all = rawBookData.map(bookObject => new Book(bookObject));
     }
     // post new book
-    Book.prototype.insertRecord = function(callback){
-        $.post(`${__API_URL__ }/v1/books`, {title: this.title, author: this.author, isbn: this.isbn, image_url: this.image_url, description: this.description})
+    Book.insertRecord = book => {
+        $.post(`${__API_URL__ }/v1/books`, book)
         .then(function() {
             // pageLoad();
             console.log('1');
