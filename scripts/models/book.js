@@ -29,8 +29,9 @@ var app = app || {};
         $.get(`${__API_URL__ }/v1/books`)
             .then(results => {
                 Book.loadAll(results);
-                next();
             });
+        app.Book.all.map(book => $('#books').append(book.toHtml()));
+        next()
         };
             
     // THIS IS 2ND
