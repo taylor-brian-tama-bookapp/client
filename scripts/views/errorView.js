@@ -9,7 +9,7 @@
         $('#homeView').hide();
         $('#errorView').empty();
         $('#newBookView').hide();
-        $('#errorView').append(`<section class="errorViewContainer"><img src="/images/404.jpg" alt="404 error"></section>`);
+        $('#errorView').append(`<section class="errorViewContainer"><img src="client/images/404.jpg" alt="404 error"></section>`);
     }
     
     module.errorView = errorView;
