@@ -13,10 +13,24 @@
 
         <script id="book-template" type="text/x-handlebars-template">
             <section class="bookListing" data-author="{{author}}">
-                <img src="{{imageUrl}}">
+                <a href="/book/{{id}}">
+                <img src="{{image_url}}">
                 <div class="bookInfo">
-                    <p class="bookTitle">{{bookTitle}}</p>
-                    <p class="bookAuthor"><a ref="{{authorUrl}}">{{bookAuthor}}</a></p>
+                    <p class="bookTitle">{{title}}</p>
+                    <p class="bookAuthor">{{author}}</p>
+                </div>
+                </a>
+            </section>
+        </script>
+
+        <script id="individual-template" type="text/x-handlebars-template">
+            <section class="bookListing" data-author="{{author}}">
+                <img src="{{image_url}}">
+                <div class="bookInfo">
+                    <p class="bookTitle">{{title}}</p>
+                    <p class="bookAuthor">{{author}}</p>
+                    <p class="bookDesc">{{description}}</p>
+                    <p class="isbn">{{isbn}}</p>
                 </div>
             </section>
         </script>
@@ -36,7 +50,7 @@
             <a href="/">home</a>
             <a href="/new">new</a>
             <a href="/book/evwevw">individual book</a>
-            <a href="/sdvcewvewvwea">error</a>
+            <a href="/v/c/ewvewvwea">error</a>
         </header>
         
         <main>

@@ -3,7 +3,8 @@ var app = app || {};
 
 (function(module) {
     const book = {};
-    var __API_URL__ = 'https://ttb-books.herokuapp.com';
+    //var __API_URL__ = 'https://ttb-books.herokuapp.com';
+     var __API_URL__ = 'http://localhost:3000';
 
     // THIS IS 3RD
     function Book (rawBookDataObj) {
@@ -11,33 +12,123 @@ var app = app || {};
     }
     // PROPERTY OF CONSTRUCTOR, ALL BOOKS
     Book.all = [];
+
+    Book.single = [];
     // TURNS BOOKS INTO HTML VIA HANDLEBARS TEMPLATE ON INDEX PAGE IN HEAD
     // THIS IS 4TH
     Book.prototype.toHtml = function() {
         var template = Handlebars.compile($('#book-template').text());
         return template(this);
     };
+
+    Book.prototype.singleHtml = function() {
+        var template = Handlebars.compile($('#individual-template').text());
+        return template(this);
+
+    }
     // AJAX REQUEST WHICH GO TO SERVER THEN DB, THIS JUST REQUEST ALL BOOKS DATA
     // THIS IS 1ST
     Book.fetchAll = (ctx, next) => {
-        console.log(Book.fetchAll);
+        console.log('Book.fetchAll');
         $.get(`${__API_URL__ }/v1/books`)
             .then(results => {
                 Book.loadAll(results);
             });
-        next();
+        //next();
      };
+
+     Book.fetchSingle = (ctx, next)  => {
+         console.log('fetchSingle');
+         $.get(`${__API_URL__}/v1/books/${ctx.params.book_id}`)
+            .then(results => {
+                Book.loadSingle(results);
+            });
+        next()
+     };
+
+    // Book.fetchAll = () => {
+    //     if (localStorage.ETag) {
+    //       $.ajax({
+    //         type: 'HEAD',
+    //         url: `${__API_URL__ }/v1/books`,
+    //         success: function(data, message, xhr) {
+    //           let ETag = xhr.getResponseHeader('ETag');
+    //           if(localStorage.ETag === ETag) {
+    //             console.log('localStorage.ETag', localStorage.ETag, 'ETag', ETag);
+    //             Book.loadAll(JSON.parse(localStorage.rawData));
+    //           }
+    //           else {
+    //             $.ajax({
+    //               type: 'HEAD',
+    //               url: `${__API_URL__ }/v1/books`,
+    //               method: 'GET',
+    //               success: function(data, message, xhr) {
+    //                 console.log('data', data);
+    //                 console.log('message', message);
+    //                 console.log('xhr', xhr);
+    //                 console.log(xhr.getResponseHeader('ETag'));
+    //                 ETag = xhr.getResponseHeader('ETag');
+    //                 // console.log('ETag', ETag);
+    //                 console.log('localStorage.ETag', localStorage.ETag, 'ETag', ETag);
+    //                 localStorage.setItem('rawData', JSON.stringify(data));
+    //                 localStorage.setItem('ETag', ETag);
+    //                 // console.log(localStorage.rawData);
+    //                 // console.log(localStorage.ETag);
+    //                 Book.loadAll(data);
+    //               }
+    //             })
+    //           }
+    //         }
+    //       });
+    //     }
+    //     else {
+    //       $.ajax({
+    //         type: 'HEAD',
+    //         url: `${__API_URL__ }/v1/books`,
+    //         method: 'GET',
+    //         success: function(data, message, xhr) {
+    //           // console.log('data', data);
+    //           // console.log('message', message);
+    //           // console.log('xhr', xhr);
+    //           let ETag = xhr.getResponseHeader('ETag');
+    //           // console.log('ETag', ETag);
+    //           localStorage.setItem('rawData', JSON.stringify(data));
+    //           localStorage.setItem('ETag', ETag);
+    //           // console.log(localStorage.rawData);
+    //           console.log('localStorage.ETag', localStorage.ETag);
+    //           Book.loadAll(data);
+    //         }
+    //       })
+    //     }
+    //   }
           
     Book.renderAll = (ctx, next) => {
+        console.log('renderAll');
         app.Book.all.map(book => $('#books').append(book.toHtml()));
-        next();
+        //next();
+    }
+
+    Book.renderSingle = (ctx, next) => {
+        console.log('renderSingle');
+        app.Book.single.map(book => $('#individualBook').append(book.singleHtml()));
+
     }
 
     // THIS IS 2ND
     Book.loadAll = rawBookData => {
-        Book.all = rawBookData.map(bookObject => new Book(bookObject))
-        
+        Book.all = rawBookData.map(bookObject => new Book(bookObject));
+        Book.renderAll();
+        //next();
     }
+
+    Book.loadSingle = rawBookData => {
+        Book.single = [];
+        Book.single = bookObject => new Book(bookObject);
+
+    }
+
+    
+        
     // post new book
 
     Book.prototype.insertRecord = function(callback){
