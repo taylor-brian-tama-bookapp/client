@@ -118,6 +118,7 @@ var app = app || {};
         $('#individualBook').empty();
         app.Book.single.map(book => $('#individualBook').append(book.singleHtml()));
         Book.handleDeleteButton();
+        Book.handleUpdateButton();
     }
 
     // THIS IS 2ND
@@ -198,6 +199,15 @@ var app = app || {};
             console.log($(this).data('id'));
             let book_id = $(this).data('id');
             Book.prototype.deleteRecord(book_id);
+        });
+    }
+
+    Book.handleUpdateButton = () => {
+        console.log('update button instantiated');
+        $('.bookListing').on('click', $('#updateButton'), function() {
+            console.log($(this).data('id'));
+            let book_id = $(this).data('id');
+            // Book.prototype.updateRecord(book_id);
         });
     }
 
