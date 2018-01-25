@@ -13,9 +13,9 @@
 
         <script id="book-template" type="text/x-handlebars-template">
             <section class="bookListing" data-author="{{author}}">
-                <a href="/client/book/{{book_id}}">
+                <!-- <a href="/client/book/{{book_id}}"> -->
                     <!-- local route below -->
-                <!-- <a href="/book/{{book_id}}"> -->
+                <a href="/book/{{book_id}}">
                 <img src="{{image_url}}">
                 <div class="bookInfo">
                     <p class="bookTitle">{{title}}</p>
@@ -26,7 +26,7 @@
         </script>
 
         <script id="individual-template" type="text/x-handlebars-template">
-            <section class="bookListing" data-author="{{author}}">
+            <section class="bookListing" data-author="{{author}}" data-id="{{book_id}}">
                 <img src="{{image_url}}">
                 <div class="bookInfo">
                     <p class="bookTitle">{{title}}</p>
@@ -34,26 +34,28 @@
                     <p class="bookDesc">{{description}}</p>
                     <p class="isbn">{{isbn}}</p>
                 </div>
+                <button id="updateButton">Update</button>
+                <button id="deleteButton">Delete</button>
             </section>
         </script>
 
     </head>
     <body>
-        <header>
+        <!-- <header>
             <h1>Books and shit</h1>
             <a href="/client">home</a>
             <a href="/client/new">new</a>
             <a href="/client/book/evwevw">individual book</a>
             <a href="/client/sdvcewvewvwea">error</a>
-        </header>
+        </header> -->
 
-        <!-- <header>
+        <header>
             <h1>Books and shit</h1>
             <a href="/">home</a>
             <a href="/new">new</a>
             <a href="/book/evwevw">individual book</a>
             <a href="/v/c/ewvewvwea">error</a>
-        </header> -->
+        </header>
         
         <main>
             <section id="homeView">
@@ -113,6 +115,8 @@
         <script src="scripts/vendor/handlebars.js"></script>
         <script src="scripts/vendor/page.js"></script>
         <script src="scripts/models/book.js"></script>
+        <script src="scripts/models/update.js"></script>
+        <script src="scripts/models/delete.js"></script>
         <script src="scripts/views/homeView.js"></script>
         <script src="scripts/views/newBookView.js"></script>
         <script src="scripts/views/singleBookView.js"></script>

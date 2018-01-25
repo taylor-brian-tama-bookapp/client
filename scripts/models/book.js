@@ -3,8 +3,8 @@ var app = app || {};
 
 (function(module) {
     const book = {};
-    var __API_URL__ = 'https://ttb-books.herokuapp.com';
-    //  var __API_URL__ = 'http://localhost:3000';
+    // var __API_URL__ = 'https://ttb-books.herokuapp.com';
+     var __API_URL__ = 'http://localhost:3000';
 
     // THIS IS 3RD
     function Book (rawBookDataObj) {
@@ -108,6 +108,7 @@ var app = app || {};
           
     Book.renderAll = (ctx, next) => {
         console.log('renderAll');
+        $('#books').empty();
         app.Book.all.map(book => $('#books').append(book.toHtml()));
         //next();
     }
@@ -116,7 +117,7 @@ var app = app || {};
         console.log('renderSingle');
         $('#individualBook').empty();
         app.Book.single.map(book => $('#individualBook').append(book.singleHtml()));
-
+        Book.handleDeleteButton();
     }
 
     // THIS IS 2ND
@@ -138,11 +139,68 @@ var app = app || {};
     // post new book
 
     Book.prototype.insertRecord = function(callback){
-        $.post(`${__API_URL__ }/v1/books`, {title: this.title, author: this.author, isbn: this.isbn, image_url: this.image_url, description: this.description})
-        .then(callback); 
+        // $.post(`${__API_URL__ }/v1/books`, {title: this.title, author: this.author, isbn: this.isbn, image_url: this.image_url, description: this.description})
+        // .then(callback); 
+        $.ajax({
+            url: `${__API_URL__ }/v1/books`,
+            method: 'POST',
+            data: {
+              title: this.title,
+              author: this.author,
+              isbn: this.isbn,
+              image_url: this.image_url,
+              description: this.description
+            },
+            success: window.location = '../',
+          })
+          .then(callback);
     };
+
+    // UPDATE/PUT
+
+    Book.prototype.updateRecord = function (callback) {
+        console.log('book.prototype.updaterecord');
+        $.ajax({
+          url: `${__API_URL__}/v1/books/${this.book_id}`,
+          method: 'PUT',
+          data: {
+            title: this.title,
+            author: this.author,
+            isbn: this.isbn,
+            image_url: this.image_url,
+            description: this.description
+          }
+        })
+          .then(console.log)
+          .then(callback);
+      };
+
+
+    // DELETE
+
+    Book.prototype.deleteRecord = function (book_id, callback) {
+        console.log('book.prototype.deleterecord, book_id: ', book_id);
+        $.ajax({
+            url: `${__API_URL__}/v1/books/${book_id}`,
+            method: 'DELETE',
+            success: function() {
+                console.log('success');
+                window.location = '../';
+            }
+        })
+            .then(console.log)
+            .then(callback);
+    };
+
+    Book.handleDeleteButton = () => {
+        console.log('book button instantiated');
+        $('.bookListing').on('click', $('#deleteButton'), function() {
+            console.log($(this).data('id'));
+            let book_id = $(this).data('id');
+            Book.prototype.deleteRecord(book_id);
+        });
+    }
 
     module.Book = Book;
 })(app);
 
-//
