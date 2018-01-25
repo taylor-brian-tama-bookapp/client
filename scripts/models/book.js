@@ -139,8 +139,21 @@ var app = app || {};
     // post new book
 
     Book.prototype.insertRecord = function(callback){
-        $.post(`${__API_URL__ }/v1/books`, {title: this.title, author: this.author, isbn: this.isbn, image_url: this.image_url, description: this.description})
-        .then(callback); 
+        // $.post(`${__API_URL__ }/v1/books`, {title: this.title, author: this.author, isbn: this.isbn, image_url: this.image_url, description: this.description})
+        // .then(callback); 
+        $.ajax({
+            url: `${__API_URL__ }/v1/books`,
+            method: 'POST',
+            data: {
+              title: this.title,
+              author: this.author,
+              isbn: this.isbn,
+              image_url: this.image_url,
+              description: this.description
+            },
+            success: window.location = '../',
+          })
+          .then(callback);
     };
 
     // UPDATE/PUT
