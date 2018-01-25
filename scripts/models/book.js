@@ -23,6 +23,7 @@ var app = app || {};
 
     Book.prototype.singleHtml = function() {
         var template = Handlebars.compile($('#individual-template').text());
+        console.log(template(this));
         return template(this);
 
     }
@@ -39,8 +40,11 @@ var app = app || {};
 
      Book.fetchSingle = (ctx, next)  => {
          console.log('fetchSingle');
+         console.log(`${ctx.params.book_id}`);
+         console.log(`${__API_URL__}/v1/books/${ctx.params.book_id}`);
          $.get(`${__API_URL__}/v1/books/${ctx.params.book_id}`)
             .then(results => {
+                console.log(results);
                 Book.loadSingle(results);
             });
         next()
@@ -110,6 +114,7 @@ var app = app || {};
 
     Book.renderSingle = (ctx, next) => {
         console.log('renderSingle');
+        $('#individualBook').empty();
         app.Book.single.map(book => $('#individualBook').append(book.singleHtml()));
 
     }
@@ -123,8 +128,9 @@ var app = app || {};
 
     Book.loadSingle = rawBookData => {
         Book.single = [];
-        Book.single = bookObject => new Book(bookObject);
-
+        Book.single = rawBookData.map(bookObject => new Book(bookObject));
+        console.log(Book.single);
+        Book.renderSingle();
     }
 
     
