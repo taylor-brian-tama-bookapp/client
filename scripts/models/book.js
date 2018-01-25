@@ -159,6 +159,11 @@ var app = app || {};
 
     // UPDATE/PUT
 
+    Book.prototype.updateHtml = function() {
+        var template = Handlebars.compile($('#update-template').html());
+        return template(this);
+    };
+
     Book.prototype.updateRecord = function (callback) {
         console.log('book.prototype.updaterecord');
         $.ajax({
