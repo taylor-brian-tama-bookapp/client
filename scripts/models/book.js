@@ -3,8 +3,8 @@ var app = app || {};
 
 (function(module) {
     const book = {};
-    var __API_URL__ = 'https://ttb-books.herokuapp.com';
-    //  var __API_URL__ = 'http://localhost:3000';
+    // var __API_URL__ = 'https://ttb-books.herokuapp.com';
+     var __API_URL__ = 'http://localhost:3000';
 
     // THIS IS 3RD
     function Book (rawBookDataObj) {
@@ -108,6 +108,7 @@ var app = app || {};
           
     Book.renderAll = (ctx, next) => {
         console.log('renderAll');
+        $('#books').empty();
         app.Book.all.map(book => $('#books').append(book.toHtml()));
         //next();
     }
