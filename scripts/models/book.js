@@ -56,6 +56,12 @@ var app = app || {};
         next();
     }
 
+    Book.renderEdit = (ctx, next) => {
+        $('#updateBook').empty();
+        app.Book.single.map(book => $('#updateBook').append(book.updateHtml()));
+        next();
+    }
+
     // 2ND - takes the individual result and maps it to  the new Book constructor
     Book.loadSingle = (ctx, next) => {
         Book.single = [];
@@ -105,28 +111,28 @@ var app = app || {};
         });
     }
 
-    // UPDATE/PUT
-    // Book.prototype.updateHtml = function() {
-    //     var template = Handlebars.compile($('#update-template').html());
-    //     return template(this);
-    // };
+    //UPDATE/PUT
+    Book.prototype.updateHtml = function() {
+        var template = Handlebars.compile($('#update-template').html());
+        return template(this);
+    };
 
-    // Book.prototype.updateRecord = function (callback) {
-    //     console.log('book.prototype.updaterecord');
-    //     $.ajax({
-    //       url: `${__API_URL__}/v1/books/${this.book_id}`,
-    //       method: 'PUT',
-    //       data: {
-    //         title: this.title,
-    //         author: this.author,
-    //         isbn: this.isbn,
-    //         image_url: this.image_url,
-    //         description: this.description
-    //       }
-    //     })
-    //       .then(console.log)
-    //       .then(callback);
-    //   };
+    Book.prototype.updateRecord = function (callback) {
+        console.log('book.prototype.updaterecord');
+        $.ajax({
+          url: `${__API_URL__}/v1/books/${this.book_id}`,
+          method: 'PUT',
+          data: {
+            title: this.title,
+            author: this.author,
+            isbn: this.isbn,
+            image_url: this.image_url,
+            description: this.description
+          }
+        })
+          .then(console.log)
+          .then(callback);
+      };
 
     // Book.handleUpdateButton = () => {
     //     $('.bookListing').on('click', $('#updateButton'), function() {
