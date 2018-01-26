@@ -72,6 +72,9 @@ var app = app || {};
            });
     };
 
+    Book.test = (ctx, next)  => {
+        console.log(ctx);
+    };
     // POST - Inserts a new record into the database
     Book.prototype.insertRecord = function(){
         $.ajax({
@@ -103,34 +106,34 @@ var app = app || {};
     }
 
     // UPDATE/PUT
-    Book.prototype.updateHtml = function() {
-        var template = Handlebars.compile($('#update-template').html());
-        return template(this);
-    };
+    // Book.prototype.updateHtml = function() {
+    //     var template = Handlebars.compile($('#update-template').html());
+    //     return template(this);
+    // };
 
-    Book.prototype.updateRecord = function (callback) {
-        console.log('book.prototype.updaterecord');
-        $.ajax({
-          url: `${__API_URL__}/v1/books/${this.book_id}`,
-          method: 'PUT',
-          data: {
-            title: this.title,
-            author: this.author,
-            isbn: this.isbn,
-            image_url: this.image_url,
-            description: this.description
-          }
-        })
-          .then(console.log)
-          .then(callback);
-      };
+    // Book.prototype.updateRecord = function (callback) {
+    //     console.log('book.prototype.updaterecord');
+    //     $.ajax({
+    //       url: `${__API_URL__}/v1/books/${this.book_id}`,
+    //       method: 'PUT',
+    //       data: {
+    //         title: this.title,
+    //         author: this.author,
+    //         isbn: this.isbn,
+    //         image_url: this.image_url,
+    //         description: this.description
+    //       }
+    //     })
+    //       .then(console.log)
+    //       .then(callback);
+    //   };
 
-    Book.handleUpdateButton = () => {
-        $('.bookListing').on('click', $('#updateButton'), function() {
-            let book_id = $(this).data('id');
-            // Book.prototype.updateRecord(book_id);
-        });
-    }
+    // Book.handleUpdateButton = () => {
+    //     $('.bookListing').on('click', $('#updateButton'), function() {
+    //         let book_id = $(this).data('id');
+    //         // Book.prototype.updateRecord(book_id);
+    //     });
+    // }
 
     module.Book = Book;
 })(app);

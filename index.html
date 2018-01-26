@@ -34,7 +34,6 @@
                     <p class="bookDesc">{{description}}</p>
                     <p class="isbn">{{isbn}}</p>
                 </div>
-                <a id="updateButton" href="/book/{{book_id}}/update">Update</a>
                 <button id="deleteButton">Delete</button>
             </section>
         </script>
@@ -102,6 +101,7 @@
                 <section id="individualBook" class="tab-content">
                     <p>BOOK VIEW</p>
                 </section>
+                <a id="updateButton" href="/edit/book_id">Edit</a>
             </section>
 
             <section id="updateBookView">
@@ -150,7 +150,6 @@
                 </section>
             </section>
         </main>
-
         <script src="scripts/vendor/jquery.js"></script>
         <script src="scripts/vendor/handlebars.js"></script>
         <script src="scripts/vendor/page.js"></script>
@@ -160,7 +159,7 @@
         <script src="scripts/views/homeView.js"></script>
         <script src="scripts/views/newBookView.js"></script>
         <script src="scripts/views/singleBookView.js"></script>
-        <script src="scripts/views/updateBookView.js"></script>
+        <script src="scripts/views/editBookView.js"></script>
         <script src="scripts/views/errorView.js"></script>
         <script src="scripts/controllers/routes.js"></script>
     </body>

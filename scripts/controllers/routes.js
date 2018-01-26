@@ -12,9 +12,10 @@
 page('/', homeView.init, app.Book.fetchAll, app.Book.loadAll, app.Book.renderAll);
 page('/new', newBookView.init);
 page('/book/:book_id', singleBookView.init, app.Book.fetchSingle, app.Book.loadSingle, app.Book.renderSingle, app.Book.prototype.deleteRecord);
-page('/book/:book_id/update',updateBookView.init, app.Book.fetchSingle)
-page('/*', errorView.init);
-page('/*/*', errorView.init);
+page('/edit/:book_id', editBookView.init);
+
+// page('/*', errorView.init);
+// page('/*/*', errorView.init);
 // page('/*/*/*', errorView.init);
 
 
