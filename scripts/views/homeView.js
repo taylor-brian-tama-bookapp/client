@@ -7,7 +7,7 @@
         $('#singleBookView').hide();
         $('#errorView').hide();
         $('#newBookView').hide();
-        $('#updateBookView').hide();
+        $('#editBookView').hide();
         $('#homeView').show();
         next();
     }

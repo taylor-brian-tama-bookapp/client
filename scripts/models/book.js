@@ -53,11 +53,13 @@ var app = app || {};
     Book.renderSingle = (ctx, next) => {
         $('#individualBook').empty();
         app.Book.single.map(book => $('#individualBook').append(book.singleHtml()));
+        $('#updateButton').attr('href', `/book/${ctx.params.book_id}/edit`)
         next();
     }
 
     // 2ND - takes the individual result and maps it to  the new Book constructor
     Book.loadSingle = (ctx, next) => {
+        console.log(ctx.results);
         Book.single = [];
         Book.single = ctx.results.map(bookObject => new Book(bookObject));
         next();
@@ -72,9 +74,6 @@ var app = app || {};
            });
     };
 
-    Book.test = (ctx, next)  => {
-        console.log(ctx);
-    };
     // POST - Inserts a new record into the database
     Book.prototype.insertRecord = function(){
         $.ajax({
@@ -93,7 +92,7 @@ var app = app || {};
 
     // Delete - removes a record from the database
     Book.prototype.deleteRecord = (ctx, next) => {
-        let book_id = ctx.results[0].book_id;
+        let book_id = ctx.params.book_id;
         $('.bookListing').on('click', $('#deleteButton'), function() {
             $.ajax({
                 url: `${__API_URL__}/v1/books/${book_id}`,
@@ -105,11 +104,26 @@ var app = app || {};
         });
     }
 
-    // UPDATE/PUT
-    // Book.prototype.updateHtml = function() {
-    //     var template = Handlebars.compile($('#update-template').html());
+// UPDATE/PUT
+    // 4th - handlebars tamplate
+    Book.prototype.editHtml = function(ctx, next) {
+        var template = Handlebars.compile($('#update-template').text());
+        console.log(template(this));
+        return template(this);
+    };
+
+    // // 4th - handlebars tamplate
+    // Book.prototype.singleHtml = function() {
+    //     var template = Handlebars.compile($('#individual-template').text());
     //     return template(this);
-    // };
+    // }
+
+    // 3rd - maps book from constructor to template and appends it to html
+    Book.renderEditSingle = (ctx, next) => {
+        $('#individualBook').empty();
+        app.Book.single.map(book => $('#editBook').append(book.editHtml()));
+        // next();
+    }
 
     // Book.prototype.updateRecord = function (callback) {
     //     console.log('book.prototype.updaterecord');
