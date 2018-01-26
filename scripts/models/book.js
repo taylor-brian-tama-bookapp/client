@@ -105,49 +105,43 @@ var app = app || {};
     }
 
 // UPDATE/PUT
-    // 4th - handlebars tamplate
-    Book.prototype.editHtml = function(ctx, next) {
-        var template = Handlebars.compile($('#update-template').text());
-        console.log(template(this));
-        return template(this);
-    };
-
-    // // 4th - handlebars tamplate
-    // Book.prototype.singleHtml = function() {
-    //     var template = Handlebars.compile($('#individual-template').text());
-    //     return template(this);
-    // }
-
-    // 3rd - maps book from constructor to template and appends it to html
+    // 3rd - adds this boks values to edit form
     Book.renderEditSingle = (ctx, next) => {
-        $('#individualBook').empty();
-        app.Book.single.map(book => $('#editBook').append(book.editHtml()));
-        // next();
+        $('#author').val(Book.single[0].author);
+        $('#description').val(Book.single[0].description);
+        $('#image_url').val(Book.single[0].image_url);
+        $('#isbn').val(Book.single[0].isbn);
+        $('#title').val(Book.single[0].title);
+        next();
     }
 
-    // Book.prototype.updateRecord = function (callback) {
-    //     console.log('book.prototype.updaterecord');
-    //     $.ajax({
-    //       url: `${__API_URL__}/v1/books/${this.book_id}`,
-    //       method: 'PUT',
-    //       data: {
-    //         title: this.title,
-    //         author: this.author,
-    //         isbn: this.isbn,
-    //         image_url: this.image_url,
-    //         description: this.description
-    //       }
-    //     })
-    //       .then(console.log)
-    //       .then(callback);
-    //   };
-
-    // Book.handleUpdateButton = () => {
-    //     $('.bookListing').on('click', $('#updateButton'), function() {
-    //         let book_id = $(this).data('id');
-    //         // Book.prototype.updateRecord(book_id);
-    //     });
-    // }
+    Book.prototype.updateRecord = (ctx, next) => {
+        let book_id = ctx.params.book_id;
+        console.log('hi');
+        console.log(book_id);
+        $('#updateBookForm').on('submit', function(e) {
+            e.preventDefault();
+            console.log($('#title').val(), $('#author').val(), $('#isbn').val(), $('#image_url').val(), $('#description').val());
+            // let book = {
+            //     title: `$('#title').val()`,
+            //     author: `$('#author').val()`,
+            //     isbn: `$('#isbn').val()`,
+            //     image_url: `$('#image_url').val()`,
+            //     description: `$('#description').val()`,
+            // };
+            $.ajax({
+                url: `${__API_URL__}/v1/books/${book_id}/edit`,
+                method: 'PUT',
+                data: {
+                  title: $('#title').val(),
+                  author: $('#author').val(),
+                  isbn: $('#isbn').val(),
+                  image_url: $('#image_url').val(),
+                  description: $('#description').val()
+                }
+            })
+        });
+    }
 
     module.Book = Book;
 })(app);
