@@ -34,12 +34,11 @@
                     <p class="bookDesc">{{description}}</p>
                     <p class="isbn">{{isbn}}</p>
                 </div>
-                <button id="updateButton">Update</button>
                 <button id="deleteButton">Delete</button>
             </section>
         </script>
 
-        <script id="update-template" type="text/x-handlebars-template"></script>
+        <script id="update-template" type="text/x-handlebars-template">
             <section id="updateBook" class="tab-content">
                     <h1>Update Book</h1>
                     <form action="#" id="updateBookForm">
@@ -71,6 +70,7 @@
                         <button type="submit">update and return to the home page</button>
                     </form>
                 </section>
+            </script>
 
     </head>
     <body>
@@ -101,12 +101,19 @@
                 <section id="individualBook" class="tab-content">
                     <p>BOOK VIEW</p>
                 </section>
+                <a id="updateButton" href="/edit/book_id">Edit</a>
+            </section>
+
+            <section id="updateBookView">
+                <section id="updateBook" class="tab-content">
+                    <p>UPDATE BOOK VIEW</p>
+                </section>
             </section>
 
             <section id="errorView">
-                <section id="error" class="tab-content">
-                    <p>ERROR VIEW</p>
-                </section>
+                    <section class="errorViewContainer">
+                        <img src="images/404.jpg" alt="404 error">
+                    </section>
             </section>
 
             <section id="newBookView">
@@ -143,7 +150,6 @@
                 </section>
             </section>
         </main>
-
         <script src="scripts/vendor/jquery.js"></script>
         <script src="scripts/vendor/handlebars.js"></script>
         <script src="scripts/vendor/page.js"></script>
@@ -153,6 +159,7 @@
         <script src="scripts/views/homeView.js"></script>
         <script src="scripts/views/newBookView.js"></script>
         <script src="scripts/views/singleBookView.js"></script>
+        <script src="scripts/views/editBookView.js"></script>
         <script src="scripts/views/errorView.js"></script>
         <script src="scripts/controllers/routes.js"></script>
     </body>

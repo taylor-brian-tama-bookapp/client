@@ -4,16 +4,13 @@
     const homeView = {};
 
     homeView.init = function(ctx, next) {
-        console.log('homeView');
         $('#singleBookView').hide();
-        $('#errorView').empty();
+        $('#errorView').hide();
         $('#newBookView').hide();
+        $('#updateBookView').hide();
         $('#homeView').show();
         next();
     }
 
-        
-        
-    
     module.homeView = homeView;
 })(window);
