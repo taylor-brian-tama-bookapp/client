@@ -3,145 +3,77 @@ var app = app || {};
 
 (function(module) {
     const book = {};
+
     // var __API_URL__ = 'https://ttb-books.herokuapp.com';
      var __API_URL__ = 'http://localhost:3000';
 
-    // THIS IS 3RD
+    // Constructor function
     function Book (rawBookDataObj) {
         Object.keys(rawBookDataObj).forEach(key => this[key] = rawBookDataObj[key]);
     }
-    // PROPERTY OF CONSTRUCTOR, ALL BOOKS
-    Book.all = [];
 
+    //Proerty of constructor, all books and single book respectively
+    Book.all = [];
     Book.single = [];
-    // TURNS BOOKS INTO HTML VIA HANDLEBARS TEMPLATE ON INDEX PAGE IN HEAD
-    // THIS IS 4TH
+
+    // 4TH - Handlebars template
     Book.prototype.toHtml = function() {
         var template = Handlebars.compile($('#book-template').text());
         return template(this);
-    };
-
-    Book.prototype.singleHtml = function() {
-        var template = Handlebars.compile($('#individual-template').text());
-        console.log(template(this));
-        return template(this);
-
     }
-    // AJAX REQUEST WHICH GO TO SERVER THEN DB, THIS JUST REQUEST ALL BOOKS DATA
-    // THIS IS 1ST
-    Book.fetchAll = (ctx, next) => {
-        console.log('Book.fetchAll');
-        $.get(`${__API_URL__ }/v1/books`)
-            .then(results => {
-                Book.loadAll(results);
-            });
-        //next();
-     };
 
-     Book.fetchSingle = (ctx, next)  => {
-         console.log('fetchSingle');
-         console.log(`${ctx.params.book_id}`);
-         console.log(`${__API_URL__}/v1/books/${ctx.params.book_id}`);
-         $.get(`${__API_URL__}/v1/books/${ctx.params.book_id}`)
-            .then(results => {
-                console.log(results);
-                Book.loadSingle(results);
-            });
-        next()
-     };
-
-    // Book.fetchAll = () => {
-    //     if (localStorage.ETag) {
-    //       $.ajax({
-    //         type: 'HEAD',
-    //         url: `${__API_URL__ }/v1/books`,
-    //         success: function(data, message, xhr) {
-    //           let ETag = xhr.getResponseHeader('ETag');
-    //           if(localStorage.ETag === ETag) {
-    //             console.log('localStorage.ETag', localStorage.ETag, 'ETag', ETag);
-    //             Book.loadAll(JSON.parse(localStorage.rawData));
-    //           }
-    //           else {
-    //             $.ajax({
-    //               type: 'HEAD',
-    //               url: `${__API_URL__ }/v1/books`,
-    //               method: 'GET',
-    //               success: function(data, message, xhr) {
-    //                 console.log('data', data);
-    //                 console.log('message', message);
-    //                 console.log('xhr', xhr);
-    //                 console.log(xhr.getResponseHeader('ETag'));
-    //                 ETag = xhr.getResponseHeader('ETag');
-    //                 // console.log('ETag', ETag);
-    //                 console.log('localStorage.ETag', localStorage.ETag, 'ETag', ETag);
-    //                 localStorage.setItem('rawData', JSON.stringify(data));
-    //                 localStorage.setItem('ETag', ETag);
-    //                 // console.log(localStorage.rawData);
-    //                 // console.log(localStorage.ETag);
-    //                 Book.loadAll(data);
-    //               }
-    //             })
-    //           }  
-    //         }
-    //       });
-    //     }
-    //     else {
-    //       $.ajax({
-    //         type: 'HEAD',
-    //         url: `${__API_URL__ }/v1/books`,
-    //         method: 'GET',
-    //         success: function(data, message, xhr) {
-    //           // console.log('data', data);
-    //           // console.log('message', message);
-    //           // console.log('xhr', xhr);
-    //           let ETag = xhr.getResponseHeader('ETag');
-    //           // console.log('ETag', ETag);
-    //           localStorage.setItem('rawData', JSON.stringify(data));
-    //           localStorage.setItem('ETag', ETag);
-    //           // console.log(localStorage.rawData);
-    //           console.log('localStorage.ETag', localStorage.ETag);
-    //           Book.loadAll(data);
-    //         }
-    //       })
-    //     }
-    //   }
-          
+    // 3rd - maps book from constructor to tamplate and appends it to html
     Book.renderAll = (ctx, next) => {
-        console.log('renderAll');
         $('#books').empty();
         app.Book.all.map(book => $('#books').append(book.toHtml()));
-        //next();
     }
 
+    // 2ND - takes the results and maps it to  the new Book constructor
+    Book.loadAll = (ctx, next) => {
+        Book.all = ctx.results.map(bookObject => new Book(bookObject));
+        next();
+    }
+
+    // 1st - AJAX REQUEST WHICH GO TO SERVER THEN DB, THIS JUST REQUEST ALL BOOKS DATA
+    Book.fetchAll = (ctx, next) => {
+        $.get(`${__API_URL__ }/v1/books`)
+            .then(results => {
+                ctx.results = results;
+                next();
+            });
+    }
+
+    // 4th - handlebars tamplate
+    Book.prototype.singleHtml = function() {
+        var template = Handlebars.compile($('#individual-template').text());
+        return template(this);
+    }
+
+    // 3rd - maps book from constructor to tamplate and appends it to html
     Book.renderSingle = (ctx, next) => {
-        console.log('renderSingle');
         $('#individualBook').empty();
         app.Book.single.map(book => $('#individualBook').append(book.singleHtml()));
-        Book.handleDeleteButton();
-        Book.handleUpdateButton();
+        next();
     }
 
-    // THIS IS 2ND
-    Book.loadAll = rawBookData => {
-        Book.all = rawBookData.map(bookObject => new Book(bookObject));
-        Book.renderAll();
-        //next();
-    }
-
-    Book.loadSingle = rawBookData => {
+    // 2ND - takes the individual result and maps it to  the new Book constructor
+    Book.loadSingle = (ctx, next) => {
         Book.single = [];
-        Book.single = rawBookData.map(bookObject => new Book(bookObject));
-        console.log(Book.single);
-        Book.renderSingle();
+        Book.single = ctx.results.map(bookObject => new Book(bookObject));
+        next();
     }
 
-    
-        
-    // post new book
+    // 1st - AJAX REQUEST WHICH GO TO SERVER THEN DB, THIS JUST REQUEST INDIVIDUAL BOOK DATA
+    Book.fetchSingle = (ctx, next)  => {
+        $.get(`${__API_URL__}/v1/books/${ctx.params.book_id}`)
+           .then(results => {
+               ctx.results = results;
+               next();
+           });
+    };
 
-    Book.prototype.insertRecord = function(callback){
-        // $.post(`${__API_URL__ }/v1/books`, {title: this.title, author: this.author, isbn: this.isbn, image_url: this.image_url, description: this.description})
-        // .then(callback); 
+    // POST - Inserts a new record into the database
+    Book.prototype.insertRecord = function(){
         $.ajax({
             url: `${__API_URL__ }/v1/books`,
             method: 'POST',
@@ -153,12 +85,24 @@ var app = app || {};
               description: this.description
             },
             success: window.location = '../',
-          })
-          .then(callback);
+        })
     };
 
-    // UPDATE/PUT
+    // Delete - removes a record from the database
+    Book.prototype.deleteRecord = (ctx, next) => {
+        let book_id = ctx.results[0].book_id;
+        $('.bookListing').on('click', $('#deleteButton'), function() {
+            $.ajax({
+                url: `${__API_URL__}/v1/books/${book_id}`,
+                method: 'DELETE',
+                success: function() {
+                    window.location = '../';
+                }
+            })
+        });
+    }
 
+    // UPDATE/PUT
     Book.prototype.updateHtml = function() {
         var template = Handlebars.compile($('#update-template').html());
         return template(this);
@@ -181,36 +125,8 @@ var app = app || {};
           .then(callback);
       };
 
-
-    // DELETE
-
-    Book.prototype.deleteRecord = function (book_id, callback) {
-        console.log('book.prototype.deleterecord, book_id: ', book_id);
-        $.ajax({
-            url: `${__API_URL__}/v1/books/${book_id}`,
-            method: 'DELETE',
-            success: function() {
-                console.log('success');
-                window.location = '../';
-            }
-        })
-            .then(console.log)
-            .then(callback);
-    };
-
-    Book.handleDeleteButton = () => {
-        console.log('book button instantiated');
-        $('.bookListing').on('click', $('#deleteButton'), function() {
-            console.log($(this).data('id'));
-            let book_id = $(this).data('id');
-            Book.prototype.deleteRecord(book_id);
-        });
-    }
-
     Book.handleUpdateButton = () => {
-        console.log('update button instantiated');
         $('.bookListing').on('click', $('#updateButton'), function() {
-            console.log($(this).data('id'));
             let book_id = $(this).data('id');
             // Book.prototype.updateRecord(book_id);
         });
@@ -218,4 +134,3 @@ var app = app || {};
 
     module.Book = Book;
 })(app);
-

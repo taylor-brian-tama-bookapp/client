@@ -34,12 +34,12 @@
                     <p class="bookDesc">{{description}}</p>
                     <p class="isbn">{{isbn}}</p>
                 </div>
-                <button id="updateButton">Update</button>
+                <a id="updateButton" href="/book/{{book_id}}/update">Update</a>
                 <button id="deleteButton">Delete</button>
             </section>
         </script>
 
-        <script id="update-template" type="text/x-handlebars-template"></script>
+        <script id="update-template" type="text/x-handlebars-template">
             <section id="updateBook" class="tab-content">
                     <h1>Update Book</h1>
                     <form action="#" id="updateBookForm">
@@ -71,6 +71,7 @@
                         <button type="submit">update and return to the home page</button>
                     </form>
                 </section>
+            </script>
 
     </head>
     <body>
@@ -103,10 +104,16 @@
                 </section>
             </section>
 
-            <section id="errorView">
-                <section id="error" class="tab-content">
-                    <p>ERROR VIEW</p>
+            <section id="updateBookView">
+                <section id="updateBook" class="tab-content">
+                    <p>UPDATE BOOK VIEW</p>
                 </section>
+            </section>
+
+            <section id="errorView">
+                    <section class="errorViewContainer">
+                        <img src="images/404.jpg" alt="404 error">
+                    </section>
             </section>
 
             <section id="newBookView">
@@ -153,6 +160,7 @@
         <script src="scripts/views/homeView.js"></script>
         <script src="scripts/views/newBookView.js"></script>
         <script src="scripts/views/singleBookView.js"></script>
+        <script src="scripts/views/updateBookView.js"></script>
         <script src="scripts/views/errorView.js"></script>
         <script src="scripts/controllers/routes.js"></script>
     </body>
