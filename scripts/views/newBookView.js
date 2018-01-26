@@ -4,10 +4,10 @@
     let newBookView = {};
 
     newBookView.init = function() {
-        console.log('newView');
         $('#singleBookView').hide();
-        $('#errorView').empty();
+        $('#errorView').hide();
         $('#homeView').hide();
+        $('#editBookView').hide();
         $('#newBookView').show();
         $('#newBookForm').on('submit', newBookView.submit);
     }
@@ -20,13 +20,8 @@
           isbn: $('#isbn').val(),
           image_url: $('#image_url').val(),
           description: $('#description').val(),
-
-          
         });
-        console.log(book);
         book.insertRecord();
-
-        // window.location = '../';
       }
     
     module.newBookView = newBookView;

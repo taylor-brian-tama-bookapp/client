@@ -4,10 +4,11 @@
     const singleBookView = {};
 
     singleBookView.init = function(ctx, next) {
-        console.log('singlebookbookView.init', ctx.params.book_id);
-        $('#errorView').empty();
+        // console.log('singlebookbookView.init', ctx.params.book_id);
+        $('#errorView').hide();
         $('#homeView').hide();
         $('#newBookView').hide();
+        $('#editBookView').hide();
         $('#singleBookView').show();
         next();
     }
