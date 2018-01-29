@@ -4,12 +4,13 @@
     const editBookView = {};
 
     editBookView.init = function(ctx, next) {
-        console.log('hi');
+        console.log(ctx.params.book_id);
         $('#errorView').hide();
         $('#homeView').hide();
         $('#newBookView').hide();
         $('#singleBookView').hide();
         $('#editBookView').show();
+        $('#editButton').on('click', app.Book.prototype.updateRecord);
         next();
     }
     

@@ -34,43 +34,8 @@
                     <p class="bookDesc">{{description}}</p>
                     <p class="isbn">{{isbn}}</p>
                 </div>
-                <button id="deleteButton">Delete</button>
             </section>
         </script>
-
-        <!-- <script id="update-template" type="text/x-handlebars-template">
-            <section id="updateBook" class="tab-content">
-                    <h1>Update Book</h1>
-                    <form action="#" id="updateBookForm">
-                        <fieldset>
-                            <label for="title">Title: </label>
-                            <input type="text" id="title" name="title" value={{title}} required>
-                        </fieldset>
-                        
-                        <fieldset>
-                            <label for="author">Author: </label>
-                            <input type="text" id="author" name="author" value={{author}} required>
-                        </fieldset>
-                        
-                        <fieldset>
-                            <label for="isbn">ISBN: </label>
-                            <input type="text" id="isbn" name="isbn" value={{isbn}}>
-                        </fieldset>
-
-                        <fieldset>
-                            <label for="image_url">Image Url: </label>
-                            <input type="text" id="image_url" name="image_url" value={{image_utl}}>
-                        </fieldset>
-
-                        <fieldset>
-                            <label for="description">Description: </label>
-                            <textarea rows="10" id="description" name="description" required>{{description}}</textarea>
-                        </fieldset>
-
-                        <button type="submit">update and return to the home page</button>
-                    </form>
-                </section>
-            </script> -->
 
     </head>
     <body>
@@ -102,6 +67,7 @@
                     <p>BOOK VIEW</p>
                 </section>
                 <a id="updateButton" href="/book/wadwd/edit">Edit</a>
+                <button id="deleteButton">Delete</button>
             </section>
 
             <section id="editBookView">
@@ -109,32 +75,34 @@
                     <p>UPDATE BOOK VIEW</p>
                         <form action="#" id="updateBookForm">
                             <fieldset>
-                                <label for="title">Title: </label>
-                                <input type="text" id="title" name="title" required>
+                                <label for="editBook_title">Title: </label>
+                                <input type="text" id="editBook_title" name="title" required>
                             </fieldset>
                             
                             <fieldset>
-                                <label for="author">Author: </label>
-                                <input type="text" id="author" name="author" required>
+                                <label for="editBook_author">Author: </label>
+                                <input type="text" id="editBook_author" name="author" required>
                             </fieldset>
                               
                             <fieldset>
-                                <label for="isbn">ISBN: </label>
-                                <input type="text" id="isbn" name="isbn">
+                                <label for="editBook_isbn">ISBN: </label>
+                                <input type="text" id="editBook_isbn" name="isbn">
                             </fieldset>
 
                             <fieldset>
-                                <label for="image_url">Image Url: </label>
-                                <input type="text" id="image_url" name="image_url">
+                                <label for="editBook_image_url">Image Url: </label>
+                                <input type="text" id="editBook_image_url" name="image_url">
                             </fieldset>
 
                             <fieldset>
-                                <label for="description">Description: </label>
-                                <textarea rows="10" id="description" name="description" required></textarea>
+                                <label for="editBook_description">Description: </label>
+                                <textarea rows="10" id="editBook_description" name="description" required></textarea>
                             </fieldset>
 
-                            <button id="editButton" type="submit">update and return to the home page</button>
+                            
                         </form>
+
+                        <button id="editButton">update and return to the Book's updated page</button>
                 </section>
             </section>
 
@@ -182,8 +150,6 @@
         <script src="scripts/vendor/handlebars.js"></script>
         <script src="scripts/vendor/page.js"></script>
         <script src="scripts/models/book.js"></script>
-        <script src="scripts/models/update.js"></script>
-        <script src="scripts/models/delete.js"></script>
         <script src="scripts/views/homeView.js"></script>
         <script src="scripts/views/newBookView.js"></script>
         <script src="scripts/views/singleBookView.js"></script>
