@@ -55,8 +55,8 @@ var __API_URL__ = 'https://ttb-books.herokuapp.com';
     Book.renderSingle = (ctx, next) => {
         $('#individualBook').empty();
         app.Book.single.map(book => $('#individualBook').append(book.singleHtml()));
-        // $('#updateButton').attr('href', `/client/book/${ctx.params.book_id}/edit`);
-        $('#updateButton').attr('href', `/book/${ctx.params.book_id}/edit`);
+        $('#updateButton').attr('href', `/client/book/${ctx.params.book_id}/edit`);
+        // $('#updateButton').attr('href', `/book/${ctx.params.book_id}/edit`);
         next();
     }
 
@@ -91,8 +91,8 @@ var __API_URL__ = 'https://ttb-books.herokuapp.com';
             // success: console.log('success'),
             // success: window.location = '../',
             success: function() {
-                // success: page.show(`/client`);
-                success: page.show(`/`);
+                success: page.show(`/client`);
+                // success: page.show(`/`);
             },
         })
     };
@@ -105,8 +105,8 @@ var __API_URL__ = 'https://ttb-books.herokuapp.com';
                 url: `${__API_URL__}/v1/books/${book_id}`,
                 method: 'DELETE',
                 success: function() {
-                    // success: page.show(`/client`);
-                    success: page.show(`/`);
+                    success: page.show(`/client`);
+                    // success: page.show(`/`);
                 },
             })
         });
@@ -142,8 +142,8 @@ var __API_URL__ = 'https://ttb-books.herokuapp.com';
                     description: book.description
                 },
                 success: results => {
-                    // page.show(`/client/book/${book_id}`);
-                    page.show(`/book/${book_id}`);
+                    page.show(`/client/book/${book_id}`);
+                    // page.show(`/book/${book_id}`);
                 },
             });
     }
