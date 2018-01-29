@@ -187,4 +187,11 @@ footer a {
     line-height: 25px;
     margin-right: 10px;
     cursor: pointer;
+    margin-top: -80px;
+}
+#deleteButton {
+    margin-right: 160px;
+}
+#individualBook .bookListing {
+    padding-bottom: 120px;
 }
