@@ -1,7 +1,7 @@
 'use strict';
 var app = app || {};
-// var __API_URL__ = 'https://ttb-books.herokuapp.com';
- var __API_URL__ = 'http://localhost:3000';
+var __API_URL__ = 'https://ttb-books.herokuapp.com';
+//  var __API_URL__ = 'http://localhost:3000';
 
 (function(module) {
     const book = {};
