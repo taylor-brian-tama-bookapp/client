@@ -1,12 +1,13 @@
 'use strict';
 var app = app || {};
+// var __API_URL__ = 'https://ttb-books.herokuapp.com';
+ var __API_URL__ = 'http://localhost:3000';
 
 (function(module) {
     const book = {};
     let currentBookId = localStorage.currentBookId || '';
 
-    var __API_URL__ = 'https://ttb-books.herokuapp.com';
-    //  var __API_URL__ = 'http://localhost:3000';
+    
 
     // Constructor function
     function Book (rawBookDataObj) {
@@ -54,8 +55,8 @@ var app = app || {};
     Book.renderSingle = (ctx, next) => {
         $('#individualBook').empty();
         app.Book.single.map(book => $('#individualBook').append(book.singleHtml()));
-        $('#updateButton').attr('href', `/client/book/${ctx.params.book_id}/edit`);
-        // $('#updateButton').attr('href', `/book/${ctx.params.book_id}/edit`);
+        // $('#updateButton').attr('href', `/client/book/${ctx.params.book_id}/edit`);
+        $('#updateButton').attr('href', `/book/${ctx.params.book_id}/edit`);
         next();
     }
 
@@ -90,8 +91,8 @@ var app = app || {};
             // success: console.log('success'),
             // success: window.location = '../',
             success: function() {
-                success: page.show(`/client`);
-                // success: page.show(`/`);
+                // success: page.show(`/client`);
+                success: page.show(`/`);
             },
         })
     };
@@ -104,8 +105,8 @@ var app = app || {};
                 url: `${__API_URL__}/v1/books/${book_id}`,
                 method: 'DELETE',
                 success: function() {
-                    success: page.show(`/client`);
-                    // success: page.show(`/`);
+                    // success: page.show(`/client`);
+                    success: page.show(`/`);
                 },
             })
         });
@@ -141,8 +142,8 @@ var app = app || {};
                     description: book.description
                 },
                 success: results => {
-                    page.show(`/client/book/${book_id}`);
-                    // page.show(`/book/${book_id}`);
+                    // page.show(`/client/book/${book_id}`);
+                    page.show(`/book/${book_id}`);
                 },
             });
     }
