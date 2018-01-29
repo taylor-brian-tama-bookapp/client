@@ -77,24 +77,10 @@ var __API_URL__ = 'https://ttb-books.herokuapp.com';
     };
 
     // POST - Inserts a new record into the database
-    Book.prototype.insertRecord = function(){
-        $.ajax({
-            url: `${__API_URL__ }/v1/books`,
-            method: 'POST',
-            data: {
-              title: this.title,
-              author: this.author,
-              isbn: this.isbn,
-              image_url: this.image_url,
-              description: this.description
-            },
-            // success: console.log('success'),
-            // success: window.location = '../',
-            success: function() {
-                success: page.show(`/client`);
-                // success: page.show(`/`);
-            },
-        })
+    Book.insertRecord = function(book){
+        $.post(`${__API_URL__ }/v1/books`, book)
+            .then(() => page('/client'))
+            .catch(console.error);
     };
 
     // Delete - removes a record from the database
