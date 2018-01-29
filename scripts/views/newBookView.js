@@ -19,7 +19,7 @@
           author: $('#author').val(),
           isbn: $('#isbn').val(),
           image_url: $('#image_url').val(),
-          description: $('#description').val(),
+          description: $('#newBookTextArea').val(), 
         });
         book.insertRecord();
       }
