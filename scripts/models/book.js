@@ -54,8 +54,8 @@ var app = app || {};
     Book.renderSingle = (ctx, next) => {
         $('#individualBook').empty();
         app.Book.single.map(book => $('#individualBook').append(book.singleHtml()));
-        $('#updateButton').attr('href', `/client/book/${ctx.params.book_id}/edit`)
-        // $('#updateButton').attr('href', `/book/${ctx.params.book_id}/edit`)
+        $('#updateButton').attr('href', `/client/book/${ctx.params.book_id}/edit`);
+        // $('#updateButton').attr('href', `/book/${ctx.params.book_id}/edit`);
         next();
     }
 
@@ -87,6 +87,7 @@ var app = app || {};
               image_url: this.image_url,
               description: this.description
             },
+            // success: console.log('success'),
             // success: window.location = '../',
             success: function() {
                 success: page.show(`/client`);

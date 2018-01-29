@@ -4,6 +4,7 @@
     const homeView = {};
 
     homeView.init = function(ctx, next) {
+        $('.tab-content').find('*').off();
         $('#singleBookView').hide();
         $('#errorView').hide();
         $('#newBookView').hide();
