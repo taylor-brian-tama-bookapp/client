@@ -28,11 +28,12 @@ nav {
     cursor: pointer;
 }
 #hamburgerToggle {
-    position: fixed;
+    position: absolute;
     top: 85px;
     left: 0;
     right: 0;
-    background: rgba(0,0,0,.75)
+    background: rgba(0,0,0,.75);
+    display: none;
 }
 #hamburgerToggle a{
     display: block;
@@ -107,7 +108,7 @@ footer a {
 
 /* NEW BOOK FORM */
 
-#newBook, #editBook {
+#newBook, #editBook, #individualBook .bookListing {
     padding: 40px 20px;
 }
 #newBookForm input, #newBookTextArea, #updateBookForm input, #editBook_description{
@@ -127,6 +128,7 @@ footer a {
     font-size: 20px;
     color: #5C5C5C;
     font-weight: 200;
+
 }
 #newBookForm button, #editButton {
     float: right;
@@ -142,4 +144,47 @@ footer a {
 }
 #editButton {
     margin-top: -50px;
+}
+
+/* INDIVIDUAL TEMPLATE */
+
+#individualTemplateTitle {
+    padding-bottom: 3px;
+    text-decoration: underline;
+    font-size: 20px;
+    color: #5C5C5C;
+    font-weight: 200;
+}
+#individualTemplateIsbn, #individualTemplateAuthor {
+    font-size: 14px;
+    color: #5C5C5C;
+    font-weight: 100;
+}
+#individualTemplateIsbn {
+    float: right;
+}
+#individualTemplateImg {
+    width: 100%;
+    margin: 20px 0;
+    border-radius: 5px;
+    border: 2px solid #656565;
+}
+#individualTemplateDescription {
+    font-size: 16px;
+    color: #5C5C5C;
+    font-weight: 300;
+}
+#updateButton, #deleteButton {
+    float: right;
+    color: #FFF;
+    BACKGROUND: #484848;
+    border-radius: 5px;
+    border: 0;
+    padding: 20px 0;
+    width: 140px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 25px;
+    margin-right: 10px;
+    cursor: pointer;
 }

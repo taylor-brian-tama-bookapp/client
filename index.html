@@ -13,42 +13,48 @@
 
         <script id="book-template" type="text/x-handlebars-template">
             <section class="bookListing" data-author="{{author}}">
-                <!-- <a href="/client/book/{{book_id}}"> -->
+                <a class="linkToIndividualBook" href="/client/book/{{book_id}}">
                     <!-- local route below -->
-                <a class="linkToIndividualBook" href="/book/{{book_id}}">
+                <!-- <a class="linkToIndividualBook" href="/book/{{book_id}}"> -->
                     <img class="allBooksImg"src="{{image_url}}">
                     <div class="bookInfo">
                         <p class="bookTitle">{{title}}</p>
                         <p class="bookAuthor">{{author}}</p>
                     </div>
                 </a>
-                <a href="/book/{{book_id}}" class="viewDetailsButton">View Details</a>
+                <a href="/client/book/{{book_id}}" class="viewDetailsButton">View Details</a>
+                <!-- <a href="/book/{{book_id}}" class="viewDetailsButton">View Details</a> -->
             </section>
         </script>
 
         <script id="individual-template" type="text/x-handlebars-template">
             <section class="bookListing" data-author="{{author}}" data-id="{{book_id}}">
-                <img src="{{image_url}}">
-                <div class="bookInfo">
-                    <p class="bookTitle">{{title}}</p>
-                    <p class="bookAuthor">{{author}}</p>
-                    <p class="bookDesc">{{description}}</p>
-                    <p class="isbn">{{isbn}}</p>
-                </div>
+                <p id="individualTemplateTitle" class="bookTitle">{{title}}</p>
+                <p>
+                    <span id="individualTemplateAuthor" class="bookAuthor">{{author}}</span>
+                    <span id="individualTemplateIsbn"class="isbn">isbn {{isbn}}</span>
+                </p>
+                <img id="individualTemplateImg" src="{{image_url}}">
+                <p id="individualTemplateDescription" class="bookDesc">{{description}}</p>
             </section>
         </script>
 
     </head>
     <body>
-        <!-- <header>
-            <h1>Books and shit</h1>
-            <a href="/client">home</a>
-            <a href="/client/new">new</a>
-            <a href="/client/book/evwevw">individual book</a>
-            <a href="/client/sdvcewvewvwea">error</a>
-        </header> -->
-
         <header>
+            <a id="title" href="/client">books app</a>
+            <nav>
+                <a href="/client/new">Add A New Book</a>
+                <a href="/client">Views All Books</a>
+            </nav>
+            <img src="images/menu.png" class="hamburger">
+            <section id="hamburgerToggle">
+                <a href="/client/new">Add A New Book</a>
+                <a href="/client">Views All Books</a>
+            </section>
+        </header>
+
+        <!-- <header>
             <a id="title" href="/">books app</a>
             <nav>
                 <a href="/new">Add A New Book</a>
@@ -59,7 +65,7 @@
                 <a href="/new">Add A New Book</a>
                 <a href="/">Views All Books</a>
             </section>
-        </header>
+        </header> -->
         
         <main>
             <section id="homeView">
@@ -72,7 +78,8 @@
                 <section id="individualBook" class="tab-content">
                     <p>BOOK VIEW</p>
                 </section>
-                <a id="updateButton" href="/book/wadwd/edit">Edit</a>
+                <a id="updateButton" href="/client/book/wadwd/edit">Edit</a>
+                <!-- <a id="updateButton" href="/book/wadwd/edit">Edit</a> -->
                 <button id="deleteButton">Delete</button>
             </section>
 
@@ -149,8 +156,8 @@
 
         </main>
         <footer>
-            <a href="">Github</a>
-            <a href="">LinkedIn</a>
+            <a href="https://github.com/brianbixby" target="_blank">Github</a>
+            <a href="https://www.linkedin.com/in/brianbixby1/" target="_blank">LinkedIn</a>
         </footer>
         <script src="scripts/vendor/jquery.js"></script>
         <script src="scripts/vendor/handlebars.js"></script>
