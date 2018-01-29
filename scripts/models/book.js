@@ -3,6 +3,7 @@ var app = app || {};
 
 (function(module) {
     const book = {};
+    let currentBookId = localStorage.currentBookId || '';
 
     // var __API_URL__ = 'https://ttb-books.herokuapp.com';
      var __API_URL__ = 'http://localhost:3000';
@@ -59,7 +60,6 @@ var app = app || {};
 
     // 2ND - takes the individual result and maps it to  the new Book constructor
     Book.loadSingle = (ctx, next) => {
-        console.log(ctx.results);
         Book.single = [];
         Book.single = ctx.results.map(bookObject => new Book(bookObject));
         next();
@@ -93,13 +93,14 @@ var app = app || {};
     // Delete - removes a record from the database
     Book.prototype.deleteRecord = (ctx, next) => {
         let book_id = ctx.params.book_id;
-        $('.bookListing').on('click', $('#deleteButton'), function() {
+        // $('.bookListing').on('click', $('#deleteButton'), function() {
+        $('#deleteButton').on('click', function() {
             $.ajax({
                 url: `${__API_URL__}/v1/books/${book_id}`,
                 method: 'DELETE',
                 success: function() {
-                    window.location = '../';
-                }
+                    success: page.show(`/`);
+                },
             })
         });
     }
@@ -107,40 +108,36 @@ var app = app || {};
 // UPDATE/PUT
     // 3rd - adds this boks values to edit form
     Book.renderEditSingle = (ctx, next) => {
-        $('#author').val(Book.single[0].author);
-        $('#description').val(Book.single[0].description);
-        $('#image_url').val(Book.single[0].image_url);
-        $('#isbn').val(Book.single[0].isbn);
-        $('#title').val(Book.single[0].title);
-        next();
+        $('#editBook_author').val(Book.single[0].author);
+        $('#editBook_description').val(Book.single[0].description);
+        $('#editBook_image_url').val(Book.single[0].image_url);
+        $('#editBook_isbn').val(Book.single[0].isbn);
+        $('#editBook_title').val(Book.single[0].title);
     }
 
-    Book.prototype.updateRecord = (ctx, next) => {
-        let book_id = ctx.params.book_id;
-        console.log('hi');
-        console.log(book_id);
-        $('#updateBookForm').on('submit', function(e) {
-            e.preventDefault();
-            console.log($('#title').val(), $('#author').val(), $('#isbn').val(), $('#image_url').val(), $('#description').val());
-            // let book = {
-            //     title: `$('#title').val()`,
-            //     author: `$('#author').val()`,
-            //     isbn: `$('#isbn').val()`,
-            //     image_url: `$('#image_url').val()`,
-            //     description: `$('#description').val()`,
-            // };
+    Book.prototype.updateRecord = function() {
+        let book_id = Book.single[0].book_id;
+            let book = {
+                author: $('#editBook_author').val(),
+                description: $('#editBook_description').val(),
+                image_url: $('#editBook_image_url').val(),
+                isbn: $('#editBook_isbn').val(),
+                title: $('#editBook_title').val()
+            };
             $.ajax({
                 url: `${__API_URL__}/v1/books/${book_id}/edit`,
                 method: 'PUT',
                 data: {
-                  title: $('#title').val(),
-                  author: $('#author').val(),
-                  isbn: $('#isbn').val(),
-                  image_url: $('#image_url').val(),
-                  description: $('#description').val()
-                }
-            })
-        });
+                    title: book.title,
+                    author: book.author,
+                    isbn: book.isbn,
+                    image_url: book.image_url,
+                    description: book.description
+                },
+                success: results => {
+                    page.show(`/book/${book_id}`);
+                },
+            });
     }
 
     module.Book = Book;
