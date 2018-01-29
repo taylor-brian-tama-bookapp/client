@@ -4,6 +4,7 @@
     let newBookView = {};
 
     newBookView.init = function() {
+        $('.tab-content').find('*').off();
         $('#singleBookView').hide();
         $('#errorView').hide();
         $('#homeView').hide();
@@ -21,6 +22,7 @@
           image_url: $('#image_url').val(),
           description: $('#newBookTextArea').val(), 
         });
+        // console.log(book);
         book.insertRecord();
       }
     

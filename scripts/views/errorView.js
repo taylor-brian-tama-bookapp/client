@@ -4,6 +4,7 @@
     const errorView = {};
 
     errorView.init = function() {
+        $('.tab-content').find('*').off();
         $('#singleBookView').hide();
         $('#homeView').hide();
         $('#newBookView').hide();
