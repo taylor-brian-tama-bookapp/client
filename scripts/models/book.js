@@ -87,7 +87,11 @@ var app = app || {};
               image_url: this.image_url,
               description: this.description
             },
-            success: window.location = '../',
+            // success: window.location = '../',
+            success: function() {
+                success: page.show(`/client`);
+                // success: page.show(`/`);
+            },
         })
     };
 
