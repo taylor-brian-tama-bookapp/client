@@ -15,15 +15,15 @@
 
     newBookView.submit = e => {
         e.preventDefault();
-        let book = new app.Book({
-          title: $('#title').val(),
-          author: $('#author').val(),
-          isbn: $('#isbn').val(),
-          image_url: $('#image_url').val(),
-          description: $('#newBookTextArea').val(), 
-        });
+        let book = {
+          title: e.target.title.value,
+          author: e.target.author.value,
+          isbn: e.target.isbn.value,
+          image_url: e.target.image_url.value,
+          description: e.target.newBookTextArea.value, 
+        };
         // console.log(book);
-        book.insertRecord();
+        app.Book.insertRecord(book);
       }
     
     module.newBookView = newBookView;
