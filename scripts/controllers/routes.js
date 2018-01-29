@@ -1,6 +1,5 @@
 'use strict';
 
-[]
 if(window.location.pathname !== '/') {
  page.base('/client');
 }
