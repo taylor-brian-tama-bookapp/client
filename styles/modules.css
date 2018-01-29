@@ -11,3 +11,135 @@
 .errorViewContainer img {
     max-width: 100vw;
 }
+/* HEADER */
+#title {
+    color: #747779;
+    font-size: 30px;
+    font-family: sans-serif;
+    text-decoration: none;
+}
+nav {
+    display: none;
+}
+.hamburger {
+    max-height: 35px;
+    width: auto;
+    float: right;
+    cursor: pointer;
+}
+#hamburgerToggle {
+    position: fixed;
+    top: 85px;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,.75)
+}
+#hamburgerToggle a{
+    display: block;
+    color: #F5F5F5;
+    padding: 25px 20px;
+    font-family: sans-serif;
+}
+
+@media only screen and (min-width: 500px) {
+    .hamburger, #hamburgerToggle {
+        display: none;
+    }
+    nav {
+        display: block;
+    }
+}
+/* FOOTER */
+footer a {
+    color: #4a4a4a;
+    float: right;
+    display: block;
+    margin: 20px 20px 0 0;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+/* ALL BOOKS HOME PAGE */
+.allBooksImg {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 100%;
+}
+.tab-content {
+    margin: auto;
+}
+.bookInfo {
+    background: #4a4a4a;
+    color: #888;
+    padding: 10px 20px 40px;
+    margin-top: -10px;
+}
+.viewDetailsButton {
+    float: right;
+    background: #d8d8d8;
+    padding: 7px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #4a4a4a;
+    text-decoration: none;
+    margin-top: -40px;
+    margin-right: 10px;
+}
+ .bookListing {
+    background: no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+}
+.linkToIndividualBook {
+    display: block;
+    width: 100%;
+}
+#homeView {
+    padding: 20px 0;
+    margin: 0 20px;
+}
+.bookAuthor, .bookTitle {
+    color: #888;
+    font-size: 20px;
+    margin: 5px 0;
+    text-decoration: none;
+}
+
+/* NEW BOOK FORM */
+
+#newBook, #editBook {
+    padding: 40px 20px;
+}
+#newBookForm input, #newBookTextArea, #updateBookForm input, #editBook_description{
+    width: calc((100vw - 60px));
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: solid 3px #ccc;
+    font-size: 20px;
+    line-height: 1.5;
+    padding: 5px 0 5px 10px;
+    display: block;
+    color: #5C5C5C;;
+}
+#newBookHeader, #updateBookHeader {
+    padding-bottom: 40px;
+    text-decoration: underline;
+    font-size: 20px;
+    color: #5C5C5C;
+    font-weight: 200;
+}
+#newBookForm button, #editButton {
+    float: right;
+    color: #FFF;
+    BACKGROUND: #484848;
+    border-radius: 5px;
+    padding: 20px 40px;
+    font-size: 20px;
+    cursor: pointer;
+}
+#newBookForm, #updateBookForm {
+    padding-bottom: 60px;
+}
+#editButton {
+    margin-top: -50px;
+}

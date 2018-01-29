@@ -15,13 +15,14 @@
             <section class="bookListing" data-author="{{author}}">
                 <!-- <a href="/client/book/{{book_id}}"> -->
                     <!-- local route below -->
-                <a href="/book/{{book_id}}">
-                <img src="{{image_url}}">
-                <div class="bookInfo">
-                    <p class="bookTitle">{{title}}</p>
-                    <p class="bookAuthor">{{author}}</p>
-                </div>
+                <a class="linkToIndividualBook" href="/book/{{book_id}}">
+                    <img class="allBooksImg"src="{{image_url}}">
+                    <div class="bookInfo">
+                        <p class="bookTitle">{{title}}</p>
+                        <p class="bookAuthor">{{author}}</p>
+                    </div>
                 </a>
+                <a href="/book/{{book_id}}" class="viewDetailsButton">View Details</a>
             </section>
         </script>
 
@@ -48,11 +49,16 @@
         </header> -->
 
         <header>
-            <h1>Books and shit</h1>
-            <a href="/">home</a>
-            <a href="/new">new</a>
-            <a href="/book/evwevw">individual book</a>
-            <a href="/v/c/ewvewvwea">error</a>
+            <a id="title" href="/">books app</a>
+            <nav>
+                <a href="/new">Add A New Book</a>
+                <a href="/">Views All Books</a>
+            </nav>
+            <img src="images/menu.png" class="hamburger">
+            <section id="hamburgerToggle">
+                <a href="/new">Add A New Book</a>
+                <a href="/">Views All Books</a>
+            </section>
         </header>
         
         <main>
@@ -72,7 +78,7 @@
 
             <section id="editBookView">
                 <section id="editBook" class="tab-content">
-                    <p>UPDATE BOOK VIEW</p>
+                    <p id="updateBookHeader">edit a book</p>
                         <form action="#" id="updateBookForm">
                             <fieldset>
                                 <label for="editBook_title">Title: </label>
@@ -102,7 +108,7 @@
                             
                         </form>
 
-                        <button id="editButton">update and return to the Book's updated page</button>
+                        <button id="editButton">update</button>
                 </section>
             </section>
 
@@ -114,38 +120,38 @@
 
             <section id="newBookView">
                 <section id="newBook" class="tab-content">
-                    <h1>New Book</h1>
+                    <p id="newBookHeader">add a new book</p>
                     <form action="#" id="newBookForm">
                         <fieldset>
-                            <label for="title">Title: </label>
-                            <input type="text" id="title" name="title" placeholder="Book title" required>
+                            <input type="text" id="title" name="title" placeholder="title" required>
                         </fieldset>
                         
                          <fieldset>
-                            <label for="author">Author: </label>
-                            <input type="text" id="author" name="author" placeholder="Book author" required>
+                            <input type="text" id="author" name="author" placeholder="author" required>
                          </fieldset>
                         
                         <fieldset>
-                            <label for="isbn">ISBN: </label>
-                            <input type="text" id="isbn" name="isbn" placeholder="Book ISBN">
+                            <input type="text" id="isbn" name="isbn" placeholder="isbn">
                         </fieldset>
 
                         <fieldset>
-                            <label for="image_url">Image Url: </label>
-                            <input type="text" id="image_url" name="image_url" placeholder="Book image URL">
+                            <input type="text" id="image_url" name="image_url" placeholder="image url">
                         </fieldset>
 
                         <fieldset>
-                            <label for="description">Description: </label>
-                            <textarea rows="10" id="description" name="description" placeholder="Book description" required></textarea>
+                            <textarea id="newBookTextArea" rows="5" id="description" name="description" placeholder="description..." required></textarea>
                         </fieldset>
 
-                        <button type="submit">Submit and return to the home page</button>
+                        <button type="submit">submit</button>
                     </form>
                 </section>
             </section>
+
         </main>
+        <footer>
+            <a href="">Github</a>
+            <a href="">LinkedIn</a>
+        </footer>
         <script src="scripts/vendor/jquery.js"></script>
         <script src="scripts/vendor/handlebars.js"></script>
         <script src="scripts/vendor/page.js"></script>
@@ -156,5 +162,6 @@
         <script src="scripts/views/editBookView.js"></script>
         <script src="scripts/views/errorView.js"></script>
         <script src="scripts/controllers/routes.js"></script>
+        <script src="scripts/app.js"></script>
     </body>
 </html>
