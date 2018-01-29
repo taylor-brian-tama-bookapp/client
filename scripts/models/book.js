@@ -5,8 +5,8 @@ var app = app || {};
     const book = {};
     let currentBookId = localStorage.currentBookId || '';
 
-    // var __API_URL__ = 'https://ttb-books.herokuapp.com';
-     var __API_URL__ = 'http://localhost:3000';
+    var __API_URL__ = 'https://ttb-books.herokuapp.com';
+    //  var __API_URL__ = 'http://localhost:3000';
 
     // Constructor function
     function Book (rawBookDataObj) {
@@ -54,7 +54,8 @@ var app = app || {};
     Book.renderSingle = (ctx, next) => {
         $('#individualBook').empty();
         app.Book.single.map(book => $('#individualBook').append(book.singleHtml()));
-        $('#updateButton').attr('href', `/book/${ctx.params.book_id}/edit`)
+        $('#updateButton').attr('href', `/client/book/${ctx.params.book_id}/edit`)
+        // $('#updateButton').attr('href', `/book/${ctx.params.book_id}/edit`)
         next();
     }
 
@@ -93,13 +94,13 @@ var app = app || {};
     // Delete - removes a record from the database
     Book.prototype.deleteRecord = (ctx, next) => {
         let book_id = ctx.params.book_id;
-        // $('.bookListing').on('click', $('#deleteButton'), function() {
         $('#deleteButton').on('click', function() {
             $.ajax({
                 url: `${__API_URL__}/v1/books/${book_id}`,
                 method: 'DELETE',
                 success: function() {
-                    success: page.show(`/`);
+                    success: page.show(`/client`);
+                    // success: page.show(`/`);
                 },
             })
         });
@@ -135,7 +136,8 @@ var app = app || {};
                     description: book.description
                 },
                 success: results => {
-                    page.show(`/book/${book_id}`);
+                    page.show(`/client/book/${book_id}`);
+                    // page.show(`/book/${book_id}`);
                 },
             });
     }
