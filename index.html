@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>TTB Books</title>
-        <base href=".">
+        <!-- <base href="."> -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles/reset.css">
         <link rel="stylesheet" href="styles/icons.css">
@@ -14,17 +14,17 @@
 
         <script id="book-template" type="text/x-handlebars-template">
             <section class="bookListing" data-author="{{author}}">
-                <!-- <a class="linkToIndividualBook" href="/client/book/{{book_id}}"> -->
+                <a class="linkToIndividualBook" href="/client/book/{{book_id}}">
                     <!-- local route below -->
-                <a class="linkToIndividualBook" href="/book/{{book_id}}">
+                <!-- <a class="linkToIndividualBook" href="/book/{{book_id}}"> -->
                     <img class="allBooksImg"src="{{image_url}}">
                     <div class="bookInfo">
                         <p class="bookTitle">{{title}}</p>
                         <p class="bookAuthor">{{author}}</p>
                     </div>
                 </a>
-                <!-- <a href="/client/book/{{book_id}}" class="viewDetailsButton">View Details</a> -->
-                <a href="/book/{{book_id}}" class="viewDetailsButton">View Details</a>
+                <a href="/client/book/{{book_id}}" class="viewDetailsButton">View Details</a>
+                <!-- <a href="/book/{{book_id}}" class="viewDetailsButton">View Details</a> -->
             </section>
         </script>
 
@@ -41,7 +41,7 @@
         </script>
     </head>
     <body>
-        <!-- <header>
+        <header>
             <a id="title" href="/client">books app</a>
             <nav>
                 <a href="/client/new">Add A New Book</a>
@@ -52,9 +52,9 @@
                 <a href="/client/new">Add A New Book</a>
                 <a href="/client">Views All Books</a>
             </section>
-        </header> -->
+        </header>
 
-        <header>
+        <!-- <header>
             <a id="apptitle" href="/">books app</a>
             <nav>
                 <a href="/new">Add A New Book</a>
@@ -65,7 +65,7 @@
                 <a href="/new">Add A New Book</a>
                 <a href="/">Views All Books</a>
             </section>
-        </header>
+        </header> -->
         
         <main>
             <section id="homeView">
@@ -78,8 +78,8 @@
                 <section id="individualBook" class="tab-content">
                     <p>BOOK VIEW</p>
                 </section>
-                <!-- <a id="updateButton" href="/client/book/wadwd/edit">Edit</a> -->
-                <a id="updateButton" href="/book/wadwd/edit">Edit</a>
+                <a id="updateButton" href="/client/book/wadwd/edit">Edit</a>
+                <!-- <a id="updateButton" href="/book/wadwd/edit">Edit</a> -->
                 <button id="deleteButton">Delete</button>
             </section>
 
